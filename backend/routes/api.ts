@@ -1,5 +1,9 @@
 import express from "express";
 import { getLatestCryptoCurrencyData } from "../services/currency.service";
+import {
+  fetchAndSaveCryptoData,
+  getCurrentPrices,
+} from "../controllers/prices.controller";
 const router = express.Router();
 router.get("/list-crypto-currency", async (req, res) => {
   try {
@@ -9,5 +13,7 @@ router.get("/list-crypto-currency", async (req, res) => {
     res.status(500).send("Error fetching crypto currency data");
   }
 });
+router.get("/update", fetchAndSaveCryptoData);
+router.get("/prices", getCurrentPrices);
 
 export default router;
