@@ -1,12 +1,7 @@
-import './App.css'
+import "./App.css";
 
 function App() {
-
-  return (
-    <>
-    <span className='text-bold'>hola</span>
-    </>
-  )
+  return <span className="font-bold">Hola</span>;
 }
 
-export default App
+export default App;
