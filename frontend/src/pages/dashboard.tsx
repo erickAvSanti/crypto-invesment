@@ -1,29 +1,31 @@
 import { useEffect, useState } from "react";
-import { getCryptoPrices } from "../services/api";
+import { getCryptoCoinsData } from "../services/api";
 import { CryptoCoins } from "../components/crypto.coins";
+import { CryptoCoinsPricesChart } from "../components/crypto.coins.prices.chart";
 
 const Dashboard = () => {
-  const [data, setData] = useState([]);
+  const [cryptoCoinsData, setCryptoCoinsData] = useState([]);
 
-  const fetchData = async () => {
+  const fetchCryptoCoinsData = async () => {
     try {
-      const response = await getCryptoPrices();
-      setData(response);
+      const response = await getCryptoCoinsData();
+      setCryptoCoinsData(response);
     } catch (err) {
       console.error(err);
     }
   };
 
   useEffect(() => {
-    fetchData();
-    const interval = setInterval(fetchData, 30000); // actualiza cada 30 segundos
+    fetchCryptoCoinsData();
+    const interval = setInterval(fetchCryptoCoinsData, 30000); // actualiza cada 30 segundos
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div>
       <h1>Crypto Dashboard</h1>
-      <CryptoCoins data={data} />
+      <CryptoCoins data={cryptoCoinsData} />
+      <CryptoCoinsPricesChart data={cryptoCoinsData} />
     </div>
   );
 };

@@ -1,11 +1,5 @@
-type CryptoCoin = {
-  name: string;
-  symbol: string;
-  price: string;
-  percent_change_24h: string;
-  volume_24h: string;
-  recorded_at: string;
-};
+import type { CryptoCoin } from "../types/main.types";
+
 
 export const CryptoCoins = ({ data }: { data: CryptoCoin[] }) => (
   <div className="overflow-x-auto rounded-lg shadow-md">
