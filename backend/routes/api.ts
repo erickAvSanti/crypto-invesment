@@ -14,6 +14,6 @@ router.get("/list-crypto-currency", async (req, res) => {
   }
 });
 router.get("/update", fetchAndSaveCryptoData);
-router.get("/prices", getCurrentPrices);
+router.get("/crypto-prices", getCurrentPrices);
 
 export default router;

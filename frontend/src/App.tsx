@@ -1,7 +1,8 @@
 import "./App.css";
+import Dashboard from "./pages/dashboard";
 
 function App() {
-  return <span className="font-bold">Hola</span>;
+  return <Dashboard />;
 }
 
 export default App;
