@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getCryptoCoinsData } from "../services/api";
-import { CryptoCoins } from "../components/crypto.coins";
+import { CryptoCoinsTable } from "../components/crypto.coins.table";
 import { CryptoCoinsPricesChart } from "../components/crypto.coins.prices.chart";
 
 const Dashboard = () => {
@@ -24,7 +24,7 @@ const Dashboard = () => {
   return (
     <div>
       <h1>Crypto Dashboard</h1>
-      <CryptoCoins data={cryptoCoinsData} />
+      <CryptoCoinsTable data={cryptoCoinsData} />
       <CryptoCoinsPricesChart data={cryptoCoinsData} />
     </div>
   );

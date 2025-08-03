@@ -3,6 +3,7 @@ import { getLatestCryptoCurrencyData } from "../services/currency.service";
 import {
   fetchAndSaveCryptoData,
   getCurrentPrices,
+  getHistoryByDate,
 } from "../controllers/prices.controller";
 const router = express.Router();
 router.get("/list-crypto-currency", async (req, res) => {
@@ -15,5 +16,6 @@ router.get("/list-crypto-currency", async (req, res) => {
 });
 router.get("/update", fetchAndSaveCryptoData);
 router.get("/crypto-coins", getCurrentPrices);
+router.get('/history', getHistoryByDate);
 
 export default router;

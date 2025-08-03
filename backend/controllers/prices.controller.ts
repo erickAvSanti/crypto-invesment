@@ -43,7 +43,7 @@ export async function fetchAndSaveCryptoData(req: Request, res: Response) {
 export async function getCurrentPrices(req: Request, res: Response) {
   db.query(
     `
-    SELECT c.name, c.symbol, p.price, p.volume_24h, p.percent_change_24h, p.recorded_at
+    SELECT c.id, c.name, c.symbol, p.cryptocurrency_id, p.price, p.volume_24h, p.percent_change_24h, p.recorded_at
     FROM prices p
     JOIN cryptocurrencies c ON c.id = p.cryptocurrency_id
     WHERE p.recorded_at = (
@@ -51,6 +51,27 @@ export async function getCurrentPrices(req: Request, res: Response) {
     )`,
     (err, results) => {
       if (err) return res.status(500).send("DB Error");
+      res.json(results);
+    }
+  );
+}
+
+export function getHistoryByDate(req: Request, res: Response) {
+  const { cryptoId, from, to } = req.query;
+
+  db.query(
+    `SELECT p.*, c.name, c.symbol
+     FROM prices p
+     JOIN cryptocurrencies c ON c.id = p.cryptocurrency_id
+     WHERE p.cryptocurrency_id = ?
+     AND DATE(p.recorded_at) BETWEEN ? AND ?
+     ORDER BY p.recorded_at ASC`,
+    [cryptoId, from, to],
+    (err, results) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send("Database error");
+      }
       res.json(results);
     }
   );

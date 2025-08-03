@@ -1,7 +1,7 @@
 import type { CryptoCoin } from "../types/main.types";
 
 
-export const CryptoCoins = ({ data }: { data: CryptoCoin[] }) => (
+export const CryptoCoinsTable = ({ data }: { data: CryptoCoin[] }) => (
   <div className="overflow-x-auto rounded-lg shadow-md">
     <table className="min-w-full text-sm text-left text-gray-800 dark:text-gray-200">
       <thead className="bg-gray-200 dark:bg-gray-700 text-xs uppercase text-gray-600 dark:text-gray-300">
