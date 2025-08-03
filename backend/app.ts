@@ -5,6 +5,7 @@ dotenv.config();
 
 const app = express();
 import apiRoutes from "./routes/api";
+import { startCron } from "./cron/update.prices.job";
 
 app.use(cors());
 app.use(express.json());
@@ -13,4 +14,5 @@ app.use("/api", apiRoutes);
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+  startCron();
 });
